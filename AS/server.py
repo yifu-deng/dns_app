@@ -46,7 +46,7 @@ def handle_request():
         key = request.args.get("name")
         address = address_service.get_address(key)
         if address is None:
-            return Response("Hostname not found.", status=404)
+            return Response("Hostname not found. Please add /home after that", status=404)
         else:
             return Response(address, status=200)
     else:
