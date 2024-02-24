@@ -100,14 +100,29 @@ The DNS Application System operates through a sequence of steps that demonstrate
 - Apply the `deploy_dns.yml` file to the cluster:
 
    ```sh
-   kubectl apply -f kubernetes/deploy_dns.yml
+   $kubectl apply -f deploy_dns.yml
+   deployment.apps/as-deployment created
+   service/as-service created
+   deployment.apps/fs-deployment created
+   service/fs-service created
+   deployment.apps/us-deployment created
+   service/us-service created
    ```
 
 - Check the status of your deployments:
 
    ```sh
-   kubectl get deployments
-   kubectl get pods
+   $kubectl get deployments
+   NAME            READY   UP-TO-DATE   AVAILABLE   AGE
+   as-deployment   1/1     1            1           7m39s
+   fs-deployment   1/1     1            1           7m39s
+   us-deployment   1/1     1            1           7m39s
+   
+   $kubectl get pods
+   NAME                             READY   STATUS    RESTARTS   AGE
+   as-deployment-c768d585c-947l2    1/1     Running   0          8m22s
+   fs-deployment-6cf5878ffc-rsxg2   1/1     Running   0          8m22s
+   us-deployment-5bc4f95bcb-tl2nc   1/1     Running   0          8m22s
    ```
 
    And Ensure that all the pods are in a `RUNNING` state.
