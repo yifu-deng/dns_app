@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def fs_welcome():
-    return "Welcome to the FS server, please register your hostname and IP address"
+    return "Welcome to the FS Web Service. Please use /register to register your hostname."
 
 
 @app.route(ROUTE_REGISTER)

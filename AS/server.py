@@ -6,6 +6,7 @@ app = Flask(__name__)
 
 
 class AddressService:
+
     def __init__(self, file_path="address_map.json"):
         self.file_path = file_path
         self.address_map = self.load_address_map()
@@ -36,7 +37,7 @@ address_service = AddressService()
 
 @app.route("/home")
 def as_welcome():
-    return "Welcome to AS home page."
+    return "Welcome to Authoritative Server home page."
 
 
 @app.route("/", methods=["GET", "POST"])

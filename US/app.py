@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def us_welcome():
-    return "Welcome to my DNS_app"
+    return "Welcome to the Fibonacci App!"
 
 
 @app.route("/fibonacci")
