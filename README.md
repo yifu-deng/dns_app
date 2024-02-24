@@ -48,6 +48,8 @@ The DNS Application System operates through a sequence of steps that demonstrate
 - Python 3.8 or later
 - Flask
 - Requests library for Python
+- Kubernetes cluster
+- `kubectl` command-line tool installed and configured
 
 ### Installation
 
@@ -93,5 +95,35 @@ The DNS Application System operates through a sequence of steps that demonstrate
 
 ## Deployment on IBM Cloud Kubernetes Service
 
-- Refer to `deploy_dns.yml` for a Kubernetes deployment example.
-- Use `kubectl apply -f deploy_dns.yml` to deploy the application to your IBM Cloud Kubernetes cluster.
+- Edit the `deploy_dns.yml` file in the `kubernetes` directory.
+- Use `kubectl apply -f deploy_dns.yml` to deploy the application to the IBM Cloud Kubernetes cluster.
+- Apply the `deploy_dns.yml` file to the cluster:
+
+   ```sh
+   kubectl apply -f kubernetes/deploy_dns.yml
+   ```
+
+- Check the status of your deployments:
+
+   ```sh
+   kubectl get deployments
+   kubectl get pods
+   ```
+
+   And Ensure that all the pods are in a `RUNNING` state.
+
+- Once everything is deployed, you can access the services through the `nodePort` defined in the service configurations. Use the external IP of your Kubernetes cluster nodes with the respective `nodePort` to access each service:
+  - Authoritative Server (AS): `http://<node-ip>:30001`
+  - Fibonacci Server (FS): `http://<node-ip>:30002`
+  - User Server (US): `http://<node-ip>:30003`
+  - Replace `<node-ip>` with the actual external IP address of your Kubernetes node.
+
+### Clean Up
+
+- To delete the deployed resources, use the following commands:
+
+   ```sh
+   kubectl delete -f kubernetes/deploy_dns.yml
+   ```
+
+   This will delete the deployments and services from your Kubernetes cluster.
